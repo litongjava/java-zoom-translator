@@ -122,7 +122,8 @@ public class ZoomRealtimeTranslatorUI extends JFrame {
       // --- END MODIFICATION ---
 
       // Important: Select the correct audio input line here.
-      audioRecorder = new AudioRecorder(audioQueue);
+      TargetDataLine inputLine = getAudioInputLine();
+      audioRecorder = new AudioRecorder(inputLine, audioQueue);
     } catch (IOException | LineUnavailableException e) {
       log.error("Failed to initialize services:{}" + e.getMessage(), e);
       JOptionPane.showMessageDialog(this, "Failed to initialize audio or cloud services: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
